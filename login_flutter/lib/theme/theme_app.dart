@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  // Colores según la imagen
-  static const Color darkPrimaryColor = Color(0xFF1976D2);
-  static const Color lightPrimaryColor = Color(0xFFBBDEFB);
-  static const Color primaryColor = Color(0xFF2196F3);
-  static const Color textColor = Color(0xFFFFFFFF);
-  static const Color accentColor = Color(0xFF00BCD4);
+
+  static const Color darkPrimaryColor = Color(0xFFFFA000);
+  static const Color lightPrimaryColor = Color(0xFFFFECB3);
+  static const Color primaryColor = Color(0xFFFFC107);
+  static const Color accentColor = Color(0xFFFFEB3B);
+
+  static const Color textColor = Color(0xFF212121);
   static const Color primaryTextColor = Color(0xFF212121);
   static const Color secondaryTextColor = Color(0xFF757575);
   static const Color dividerColor = Color(0xFFBDBDBD);
@@ -45,7 +46,7 @@ class AppTheme {
         color: secondaryTextColor,
       ),
     ),
-    iconTheme: const IconThemeData(color: primaryTextColor),
+    iconTheme: const IconThemeData(color: textColor),
   );
 
   static final ThemeData darkTheme = ThemeData(
@@ -53,12 +54,12 @@ class AppTheme {
     colorScheme: const ColorScheme.dark(
       primary: darkPrimaryColor,
       secondary: accentColor,
-      onPrimary: textColor,
-      onSecondary: textColor,
+      onPrimary: Colors.white,
+      onSecondary: Colors.white,
     ),
     appBarTheme: const AppBarTheme(
       backgroundColor: darkPrimaryColor,
-      foregroundColor: textColor,
+      foregroundColor: Colors.white,
       elevation: 4,
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
@@ -71,7 +72,7 @@ class AppTheme {
       titleLarge: TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.bold,
-        color: textColor,
+        color: Colors.white,
       ),
       bodyMedium: TextStyle(
         fontSize: 16,
@@ -81,6 +82,6 @@ class AppTheme {
         color: secondaryTextColor,
       ),
     ),
-    iconTheme: const IconThemeData(color: textColor),
+    iconTheme: const IconThemeData(color: Colors.white),
   );
 }

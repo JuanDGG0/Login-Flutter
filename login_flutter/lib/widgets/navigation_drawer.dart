@@ -30,7 +30,6 @@ class CustomDrawer extends StatelessWidget {
   Widget _buildHeader(BuildContext context) {
     return DrawerHeader(
       decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor,
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -102,21 +101,21 @@ class CustomDrawer extends StatelessWidget {
           Icons.notifications,
           'Notificaciones',
           3,
-          false,
+          currentIndex == 3,
         ),
         _buildListTile(
           context,
           Icons.help,
           'Ayuda',
           4,
-          false,
+          currentIndex == 4,
         ),
         _buildListTile(
           context,
           Icons.info,
           'Acerca de',
           5,
-          false,
+          currentIndex == 5,
         ),
         const Divider(),
         _buildLogoutTile(context),
@@ -131,42 +130,45 @@ class CustomDrawer extends StatelessWidget {
     int index,
     bool isSelected,
   ) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return ListTile(
       leading: Icon(
         icon,
-        color: isSelected ? Theme.of(context).primaryColor : Colors.grey[700],
+        color: isSelected ? colorScheme.primary : colorScheme.onSurface,
       ),
       title: Text(
         title,
         style: TextStyle(
           fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-          color: isSelected
-              ? Theme.of(context).primaryColor
-              : Colors.black87,
+          color: isSelected ? colorScheme.primary : colorScheme.onSurface,
         ),
       ),
       trailing: isSelected
           ? Icon(
               Icons.arrow_forward,
-              color: Theme.of(context).primaryColor,
+              color: colorScheme.primary,
               size: 20,
             )
           : null,
       onTap: () => onItemSelected(index),
       selected: isSelected,
-      selectedTileColor: Theme.of(context).primaryColor.withOpacity(0.1),
+      selectedTileColor: colorScheme.primary.withOpacity(0.1),
     );
   }
 
   Widget _buildLogoutTile(BuildContext context) {
     return ListTile(
-      leading: const Icon(Icons.logout, color: Colors.red),
-      title: const Text(
+      leading: Icon(Icons.logout, color: Theme.of(context).colorScheme.error),
+      title: Text(
         'Cerrar Sesión',
-        style: TextStyle(color: Colors.red),
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.error,
+          fontWeight: FontWeight.bold,
+        ),
       ),
       onTap: () {
-        Navigator.pop(context); // Cerrar el drawer
+        Navigator.pop(context); // Cierra el drawer
         onLogout();
       },
     );

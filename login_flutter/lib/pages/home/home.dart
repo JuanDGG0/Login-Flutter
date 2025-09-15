@@ -117,39 +117,49 @@ class HomeContent extends StatelessWidget {
         children: [
           Text(
             '¡Bienvenido, $username!',
-            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
           ),
           const SizedBox(height: 20),
-          const Card(
+
+          Card(
             child: Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  Icon(Icons.home, size: 50, color: Colors.blue),
-                  SizedBox(height: 10),
-                  Text('Esta es la pantalla principal de la aplicación'),
-                  SizedBox(height: 10),
+                  const Icon(Icons.home, size: 50, color: Colors.blue),
+                  const SizedBox(height: 10),
+                  Text(
+                    'Esta es la pantalla principal de la aplicación',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  const SizedBox(height: 10),
                   Text(
                     'Usa el menú lateral o la barra de navegación inferior para explorar las diferentes secciones.',
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.grey),
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ],
               ),
             ),
           ),
+
           const SizedBox(height: 20),
+
           GridView.count(
             shrinkWrap: true,
             crossAxisCount: 2,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
             children: [
-              _buildFeatureCard(Icons.person, 'Perfil', Colors.blue),
-              _buildFeatureCard(Icons.settings, 'Configuración', Colors.green),
+              _buildFeatureCard(Icons.person, 'Perfil', Colors.blue, context),
               _buildFeatureCard(
-                  Icons.notifications, 'Notificaciones', Colors.orange),
-              _buildFeatureCard(Icons.help, 'Ayuda', Colors.purple),
+                  Icons.settings, 'Configuración', Colors.green, context),
+              _buildFeatureCard(Icons.notifications, 'Notificaciones',
+                  Colors.orange, context),
+              _buildFeatureCard(Icons.help, 'Ayuda', Colors.purple, context),
             ],
           ),
         ],
@@ -157,7 +167,8 @@ class HomeContent extends StatelessWidget {
     );
   }
 
-  Widget _buildFeatureCard(IconData icon, String title, Color color) {
+  Widget _buildFeatureCard(
+      IconData icon, String title, Color color, BuildContext context) {
     return Card(
       elevation: 3,
       child: Padding(
@@ -169,7 +180,9 @@ class HomeContent extends StatelessWidget {
             const SizedBox(height: 10),
             Text(
               title,
-              style: const TextStyle(fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
               textAlign: TextAlign.center,
             ),
           ],
